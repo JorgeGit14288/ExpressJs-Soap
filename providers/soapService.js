@@ -6,7 +6,7 @@ var args = {
     'fechaNacimiento': '1962-07-07',
 };
 
-function soapHttp(){
+function soapHttpTest(){
     soap.createClient(url, function(err, client) {
         if (err) {
             console.log(err);
@@ -17,9 +17,59 @@ function soapHttp(){
                 //InsSujetoFotoFactura
                 client.Transacciones1(args, function(err, result) {
                     console.log("Resultado: " + JSON.stringify(result));
+                  
                 });
             }
         }
     });
 }
-module.exports.soapHttp = soapHttp;
+
+
+
+
+function soapHttpCaptcha(body){
+     return new Promise(function(resolve, reject){ 
+        soap.createClient(url, function(err, client) {
+            if (err) {
+                console.log(err);
+                reject (err);
+            } else {
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                } else {
+                    //InsSujetoFotoFactura
+                    client.Transacciones1(body, function(err, result) {
+                       // console.log("Resultado: " + JSON.stringify(result));
+                      resolve(result);
+                    });
+                }
+            }
+        });
+    });
+    
+}
+function soapHttpLugarVotacion(body){
+    return new Promise(function(resolve, reject){ 
+       soap.createClient(url, function(err, client) {
+           if (err) {
+               console.log(err);
+               reject (err);
+           } else {
+               if (err) {
+                   console.log(err);
+                   reject(err);
+               } else {
+                   //InsSujetoFotoFactura
+                   client.ObtenerLugar1(body, function(err, result) {
+                      // console.log("Resultado: " + JSON.stringify(result));
+                     resolve(result);
+                   });
+               }
+           }
+       });
+   });
+}
+module.exports.soapHttpCaptcha = soapHttpCaptcha;
+module.exports.soapHttpLugarVotacion = soapHttpLugarVotacion;
+module.exports.soapHttpTest = soapHttpTest;

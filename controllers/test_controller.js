@@ -76,7 +76,7 @@ controller.getUsers = (req, res, next) => {
 
 controller.getXml = (req, res, next) => {
 
-    soap.soapHttp();
+    soap.soapHttpTest();
 }
 
 

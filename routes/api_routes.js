@@ -14,4 +14,10 @@ router.get('/test/photos', controllers.test.getPhotos);
 router.get('/test/posts', controllers.test.getPosts);
 router.get('/test/users', controllers.test.getUsers)
 router.get('/test/soap', controllers.test.getXml);
+
+router.post('/tse/captcha', controllers.tse.getCaptcha);
+router.post('/tse/lugarVotacion', controllers.tse.getLugarVotacion);
+
+
+
 module.exports = router;
