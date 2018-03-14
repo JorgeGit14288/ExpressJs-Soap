@@ -2,7 +2,10 @@ var services = require('../providers/httpService');
 var soap = require('../providers/soapService');
 
 controller ={};
-
+let resp = {
+    STATUS: 0,
+    USRMENSAJE: ""
+}
 controller.getCaptcha = function(req, res, next){
     console.log(req.body);
     try{
@@ -15,14 +18,13 @@ controller.getCaptcha = function(req, res, next){
         soap.soapHttpCaptcha(args).then(respuesta => {
             res.json(respuesta.Transacciones1Result);
         }).catch(err => {
-            res.json(err);
+            resp.USRMENSAJE=err.message;
+            res.json(resp);
         })
       
     }catch(ex){
-        var respuesta = {
-            "respuesta": "Test Failed by "+ex.message
-        };
-        return res.json(respuesta)
+        resp.USRMENSAJE=err.message;
+        res.json(resp);
     }
 }
 controller.getLugarVotacion = function(req, res, next){
@@ -30,21 +32,19 @@ controller.getLugarVotacion = function(req, res, next){
     try{
         console.log("CONSUMIENDO XML");
         var args = {
-            'nTransac': req.body.transacion,
-            'Guid': req.body.codigoCapcha,
+            'nTransac': req.body.nTransac,
+            'Guid': req.body.guid,
             'id': req.body.codSys,
         };
         soap.soapHttpLugarVotacion(args).then(respuesta => {
             res.json(respuesta.Transacciones1Result);
         }).catch(err => {
-            res.json(err);
+            resp.USRMENSAJE=err.message;
+            res.json(resp);
         })
-      
     }catch(ex){
-        var respuesta = {
-            "respuesta": "Test Failed by "+ex.message
-        };
-        return res.json(respuesta)
+        resp.USRMENSAJE=err.message;
+        res.json(resp);
     }
 }
 
