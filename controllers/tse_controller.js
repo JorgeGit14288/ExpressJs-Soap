@@ -37,7 +37,7 @@ controller.getLugarVotacion = function(req, res, next){
             'id': req.body.codSys,
         };
         soap.soapHttpLugarVotacion(args).then(respuesta => {
-            res.json(respuesta.Transacciones1Result);
+            res.json(respuesta.ObtenerLugar1Result);
         }).catch(err => {
             resp.USRMENSAJE=err.message;
             res.json(resp);

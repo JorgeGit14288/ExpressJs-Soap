@@ -62,7 +62,7 @@ function soapHttpLugarVotacion(body){
                } else {
                    //InsSujetoFotoFactura
                    client.ObtenerLugar1(body, function(err, result) {
-                      // console.log("Resultado: " + JSON.stringify(result));
+                    // console.log("Resultado: " + JSON.stringify(result));
                      resolve(result);
                    });
                }
